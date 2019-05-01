@@ -18,7 +18,7 @@
 // AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
+// SOFTWARE.	
 
 
 
@@ -31,9 +31,10 @@ KlikLayer.prototype.polygonView = function(hTime){
 			if(typeof hTime[videoTime] != 'undefined'){
 				if (lastTime === videoTime) {return};
 			 	lastTime = videoTime;
-			 	console.log(videoTime)
-			 	console.log(hTime[videoTime])
+
+
 			 	_this.color = 'red';
+			 	_this.opacity = 0.5;
 			 	KlikLayer.prototype.drawPolygones(hTime[videoTime]);
 
 			}else{
@@ -47,11 +48,9 @@ KlikPolygon.prototype.addPoint = function(position){
 	if(this.edit){
 
 	var points = new KlikPolygonPoint(_this.R, _this.points, _this.pointsPercentage, _this.coordinatesString, _this.widthInPx,_this.heightInPx, position, this);
-	// this.update();
 
 
 	_this.points.push({
-		id: 'da',
 		x: position.x,
 		y: position.y
 	})
@@ -178,7 +177,7 @@ function KlikPolygonPoint(R, points, pointsPercentage, coordinatesString, widthI
 	var start = function () {
 	    this.ox = this.attr("cx");
 	    this.oy = this.attr("cy");
-	    console.log(polygon)
+
 	},
 	move = function (dx, dy) {
 		var dxPercent = (dx/_that.widthInPx)*100;
@@ -198,7 +197,6 @@ function KlikPolygonPoint(R, points, pointsPercentage, coordinatesString, widthI
 	    var y = (parseFloat(_this.newPositionY)/100)* _this.heightInPx;
 
 	    var newPosPx = {
-	    	id:'dassss',
 	    	x : x,
 	    	y : y
 	    }    
@@ -237,7 +235,7 @@ function KlikPolygonPoint(R, points, pointsPercentage, coordinatesString, widthI
 		var arrayOfPoints = polygon.coordinatesString.split(/[\s,]+/);
 		var pts = [];
 		var ptsPercentage = [];
-		console.log(polygon)
+
 
 
 		// for (var i = polygon.points.length - 1; i >= 0; i--) {
@@ -267,31 +265,24 @@ function KlikPolygonPoint(R, points, pointsPercentage, coordinatesString, widthI
 		};
 
 		polygon.pointsPercentage = ptsPercentage.slice();
-		// for (var i = polygon.pointsPercentage.length - 1; i >= 0; i--) {
-
-		// 	polygon.pointsPercentage[i] = {
-		// 		x:2 + (4*i),
-		// 		y:2 + (4*i)
-		// 	} 
-		// };
 
 
 	};
 	_that.R.set(p).drag(move, start, up);
 
-	// pointsToPath(_this.coordinatesString);
+
 	
 }
 
 KlikPolygonPoint.prototype.getPoints = function(){
-	// _this.points = [];
-	// for (var i = _this.pointsPercentage.length - 1; i >= 0; i--) {
-	// 	var xPx = (_this.pointsPercentage[i].x/100)*_this.widthInPx;
-	// 	var yPx = (_this.pointsPercentage[i].y/100)*_this.heightInPx;
-	// 	_this.points.push({'x':xPx, 'y': yPx, 'id':'dsadsa'})
-	// };
+	_this.points = [];
+	for (var i = _this.pointsPercentage.length - 1; i >= 0; i--) {
+		var xPx = (_this.pointsPercentage[i].x/100)*_this.widthInPx;
+		var yPx = (_this.pointsPercentage[i].y/100)*_this.heightInPx;
+		_this.points.push({'x':xPx, 'y': yPx, 'id':'dsadsa'})
+	};
 
-	// return _this.points;
+	return _this.points;
 
 }
 
